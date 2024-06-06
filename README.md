@@ -10,10 +10,12 @@ I want to make a program that I would actually use for todos.
 - I can tag and filter different items
 - I can have more extensive notes
 
+### Stretch
+- Repeating items, i.e. for setting up a calendar
+
 ## Tasks
 I am painfully aware of using this system for todoes as I build a todos system.
-- Refactor to be consistent with use of word slice.
-    - User (config) -many-> Slice -many-> Notes
-- Move notes to a notes directory path that the user can set in config
+- More comprehensive config support: saving, datatype?
+- Move notes to an optional notes directory path that the user can set in config
+- Reading and writing slices from files
 - Creating new notes menu option
-- More explicit notes datatype that I can read/write from files

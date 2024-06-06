@@ -1,5 +1,5 @@
 local config = require 'src/config'
-local notes  = require 'src/notes'
+local slice  = require 'src/slice'
 
 
 io.write("Orange Version 0.0.0.1\n")
@@ -22,10 +22,14 @@ repeat
     index = tonumber(io.read())
 until index ~= nil and index >= 0 and index <= #user_settings.files 
 
-if index == "0" then
+if index == 0 then
     -- start the creation process    
+    io.write('Enter the name of the slice to create: ')
+    local path = io.read()
+    
+    slice.load(path .. '.orng')
 elseif index > #user_settings.files then
     print('Invalid choice')
 else
-    notes.load(user_settings.files[index] .. '.orng')
+    slice.load(user_settings.files[index] .. '.orng')
 end

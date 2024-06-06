@@ -69,4 +69,14 @@ function config.load()
     end
 end
 
+function config.add_slice(cfg, name)
+    error("Note Implemented: config.add_slice")
+    -- Add a file to an active config file
+end
+
+function config.save(cfg)
+    error("Not Implemented: 'config.save'")
+    -- Write out the given file to the config path
+end
+
 return config
