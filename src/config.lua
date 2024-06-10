@@ -45,11 +45,11 @@ local function read_details()
     local name, files = "", {}
 
     for l in f:lines() do
-        local k, v = string.match(l, '(%a+) = (.+)')
+        local k, v = string.match(l, '([%a_]+) = (.+)')
 
         if k == 'username' then
             name = v
-        elseif k == 'count' then
+        elseif k == 'file_count' then
             for i = 1, tonumber(v) do
                 files[#files+1] = f:read("l")
             end
@@ -70,13 +70,21 @@ function config.load()
 end
 
 function config.add_slice(cfg, name)
-    error("Note Implemented: config.add_slice")
     -- Add a file to an active config file
+    cfg.files[#cfg.files+1] = name
+    return cfg
 end
 
 function config.save(cfg)
-    error("Not Implemented: 'config.save'")
     -- Write out the given file to the config path
+    local f = assert(io.open(CONFIG_PATH, 'w'))
+
+    f:write(CONFIG_DOCSTRING .. '\n\n')
+    f:write('username = ' .. cfg.username .. '\n')
+    f:write('file_count = ' .. #cfg.files .. '\n')
+    for _, file in ipairs(cfg.files) do
+        f:write(file .. '\n')
+    end
 end
 
 return config

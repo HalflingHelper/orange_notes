@@ -15,6 +15,7 @@ I want to make a program that I would actually use for todos.
 
 ## Tasks
 I am painfully aware of using this system for todoes as I build a todos system.
+- Menu module
 - More comprehensive config support: saving, datatype?
 - Move notes to an optional notes directory path that the user can set in config
 - Reading and writing slices from files

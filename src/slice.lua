@@ -73,6 +73,15 @@ function slice.load(path)
     end
 end
 
+function slice.menu(display_slice)
+    io.write("Slice: $NAME\n")
+    io.write("1. View all\n")
+    io.write("2. Filter\n")
+    io.write("3. Add\n")
+
+    local i = io.read()
+end
+
 function slice.write(notes_list, path)
     local f = assert(io.open(path, 'w'))
 

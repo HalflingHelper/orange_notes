@@ -1,5 +1,7 @@
 !ORANGE_CONFIG
 
 username = calvin
-file_count = 1
+file_count = 3
 default
+test
+test1
