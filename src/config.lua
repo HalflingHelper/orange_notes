@@ -1,5 +1,6 @@
 -- Module for working with the config file
 
+-- { username = string, files = {} }
 local config = {}
 
 local CONFIG_PATH = '.orange_config'

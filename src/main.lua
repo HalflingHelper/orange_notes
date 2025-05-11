@@ -12,6 +12,7 @@ local user_settings = config.load()
 local index 
 local loaded_slice, active_path
 
+-- TODO: This should be a function
 repeat 
     io.write('0. Create new slice.\n')
     
@@ -38,9 +39,10 @@ repeat
     end
 until index ~= nil and index >= 0 and index <= #user_settings.files 
 
+-- Interaction with a note
 repeat
     slice.menu(loaded_slice)
-until true
+until false 
 
 -- Exit sequence
 slice.write(loaded_slice, active_path)

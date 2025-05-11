@@ -1,6 +1,6 @@
 -- Working with slice files
 --
--- A slice is simplay a plain text file, with the .slice file extension. There
+-- A slice is simply a plain text file, with the .slice file extension. There
 -- are a number of notable parts of the file. The file format is intended as a
 -- subset of toml.
 --
@@ -14,6 +14,7 @@
 -- tags = ___
 local notes = require 'src/notes'
 
+-- { name=string, items={ NoteItem } }
 local slice = {}
 
 local SLICE_DOCSTRING = '!ORANGE_SLICE'
@@ -40,7 +41,7 @@ local function init_slice(path)
 
     f:close()
 
-    return {}
+    return { name=path, items={} }
 end
 
 local function read_slice(path)
@@ -62,7 +63,7 @@ local function read_slice(path)
         end
     end
 
-    return slices_list
+    return { name=path, items=slices_list }
 end
 
 function slice.load(path)
@@ -74,12 +75,42 @@ function slice.load(path)
 end
 
 function slice.menu(display_slice)
-    io.write("Slice: $NAME\n")
+    io.write("Slice: " .. display_slice.name .. "\n")
     io.write("1. View all\n")
     io.write("2. Filter\n")
     io.write("3. Add\n")
+    io.write("4. Save and Close\n")
 
-    local i = io.read()
+    local i = tonumber(io.read())
+
+    if i == 1 then
+       for i, note in ipairs(display_slice.items) do
+          io.write(note.name .. " - " .. note.details .. "\n\n")
+       end
+    elseif i == 2 then
+       io.write("Enter tag(s): ")
+       local tag = io.read()
+       -- TODO: Run a filter for each space-separated tag
+    elseif i == 3 then
+        -- TODO: Defaults
+       io.write("Enter name: ")
+       local name = io.read()
+       io.write("Enter details: ")
+       local details = io.read()
+       io.write("Enter due date: ")
+       local due = io.read()
+
+       local new_item = { name=name, details=details, due=due, tags={}, status='none' }
+
+       table.insert(display_slice.items, new_item)
+
+       io.write("Successfully added!\n")
+    elseif i == 4 then
+       slice.write(display_slice.items, display_slice.name)
+       return
+    else
+       io.write("Invalid option.\n")
+   end
 end
 
 function slice.write(notes_list, path)

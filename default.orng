@@ -1,1 +1,6 @@
 !ORANGE_SLICE
+[clean]
+	details: room
+	status: none
+	due: fri
+	tags: 
